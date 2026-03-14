@@ -1,0 +1,98 @@
+version: 2
+
+sources:
+  - name: product_analytics
+    description: Raw product analytics data loaded from seed files
+    schema: main
+    tables:
+      - name: raw_events
+        description: Raw clickstream event data
+        columns:
+          - name: user_id
+            description: Unique identifier for the user
+          - name: event_name
+            description: Name of the event (page_view, signup, button_click)
+          - name: event_timestamp
+            description: When the event occurred
+          - name: page_url
+            description: URL path where the event happened
+          - name: session_id
+            description: Session identifier grouping related events
+
+      - name: raw_users
+        description: Raw user profile data
+        columns:
+          - name: user_id
+            description: Unique identifier for the user
+          - name: email
+            description: User email address
+          - name: signup_date
+            description: Date the user signed up
+          - name: plan_type
+            description: Subscription plan (free, pro, enterprise)
+
+      - name: raw_orders
+        description: Raw order/transaction data
+        columns:
+          - name: order_id
+            description: Unique identifier for the order
+          - name: user_id
+            description: User who placed the order
+          - name: amount
+            description: Order amount
+          - name: currency
+            description: Currency code
+          - name: order_date
+            description: Date the order was placed
+          - name: status
+            description: Order status (completed, refunded)
+
+models:
+  - name: stg_events
+    description: Cleaned event data with proper types
+    columns:
+      - name: event_id
+        description: Surrogate key for the event
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+      - name: event_name
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['page_view', 'signup', 'button_click']
+
+  - name: stg_users
+    description: Cleaned user profile data
+    columns:
+      - name: user_id
+        description: Unique identifier for the user
+        tests:
+          - unique
+          - not_null
+      - name: plan_type
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['free', 'pro', 'enterprise']
+
+  - name: stg_orders
+    description: Cleaned order data
+    columns:
+      - name: order_id
+        description: Unique identifier for the order
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+      - name: order_status
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['completed', 'refunded']

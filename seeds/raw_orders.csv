@@ -1,0 +1,16 @@
+order_id,user_id,amount,currency,order_date,status
+ord001,u001,49.99,USD,2024-01-15,completed
+ord002,u003,49.99,USD,2024-01-16,completed
+ord003,u005,199.99,USD,2024-01-17,completed
+ord004,u001,49.99,USD,2024-02-15,completed
+ord005,u002,0.00,USD,2024-01-15,completed
+ord006,u003,49.99,USD,2024-02-16,completed
+ord007,u007,49.99,USD,2024-01-20,completed
+ord008,u009,199.99,USD,2024-01-22,completed
+ord009,u010,49.99,USD,2024-01-23,completed
+ord010,u005,199.99,USD,2024-02-17,completed
+ord011,u004,0.00,USD,2024-01-17,completed
+ord012,u001,49.99,USD,2024-03-15,refunded
+ord013,u008,0.00,USD,2024-01-21,completed
+ord014,u006,0.00,USD,2024-01-19,completed
+ord015,u010,49.99,USD,2024-02-23,completed

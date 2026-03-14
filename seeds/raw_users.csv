@@ -1,0 +1,11 @@
+user_id,email,signup_date,plan_type
+u001,alice@example.com,2024-01-15,pro
+u002,bob@example.com,2024-01-15,free
+u003,carol@example.com,2024-01-16,pro
+u004,dave@example.com,2024-01-17,free
+u005,eve@example.com,2024-01-17,enterprise
+u006,frank@example.com,2024-01-19,free
+u007,grace@example.com,2024-01-20,pro
+u008,hank@example.com,2024-01-21,free
+u009,iris@example.com,2024-01-22,enterprise
+u010,jack@example.com,2024-01-23,pro

@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: dim_users
+    description: User dimension with profile data, activity summary, and lifetime value
+    columns:
+      - name: user_id
+        description: Unique identifier for the user
+        tests:
+          - unique
+          - not_null
+      - name: lifetime_value
+        description: Total revenue from completed orders
+      - name: plan_type
+        description: Current subscription plan
+
+  - name: fct_user_activity
+    description: Daily user activity aggregated from events
+    columns:
+      - name: activity_id
+        description: Surrogate key for user + date combination
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+      - name: activity_date
+        tests:
+          - not_null
+
+  - name: fct_orders
+    description: Order fact table enriched with user data
+    columns:
+      - name: order_id
+        description: Unique identifier for the order
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        tests:
+          - not_null

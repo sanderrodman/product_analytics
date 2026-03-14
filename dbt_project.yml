@@ -1,0 +1,45 @@
+name: 'product_analytics'
+version: '1.0.0'
+
+profile: 'product_analytics'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  product_analytics:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
+
+seeds:
+  product_analytics:
+    raw_events:
+      +column_types:
+        user_id: varchar
+        event_name: varchar
+        event_timestamp: timestamp
+        page_url: varchar
+        session_id: varchar
+    raw_users:
+      +column_types:
+        user_id: varchar
+        email: varchar
+        signup_date: date
+        plan_type: varchar
+    raw_orders:
+      +column_types:
+        order_id: varchar
+        user_id: varchar
+        amount: double
+        currency: varchar
+        order_date: date
+        status: varchar
